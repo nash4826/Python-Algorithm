@@ -32,4 +32,18 @@ def sol1(head):
 # Runner를 이용한 풀이
 # 팰린드롬 연결리스트 문제의 제대로 된 풀이법은 Runner 기법을 활용하는 것이다.
 
-# 작성예정
+
+def sol2(head):
+    rev = None
+    slow = fast = head
+    while fast and fast.next:
+        fast = fast.next.next
+        rev, rev.next, slow = slow, rev, slow.next
+
+    if fast:
+        slow = slow.next
+
+    while rev and rev.val == slow.val:
+        slow, rev = slow.next, rev.next
+
+    return not rev
